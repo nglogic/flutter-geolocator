@@ -28,6 +28,11 @@
 - (void)startTask {
     if (_locationManager == nil) {
         _locationManager = [[CLLocationManager alloc] init];
+        if (@available(iOS 9.0, *)) {
+            _locationManager.allowsBackgroundLocationUpdates = true;
+        } else {
+            // Fallback on earlier versions
+        }
         _locationManager.delegate = self;
     }
     
